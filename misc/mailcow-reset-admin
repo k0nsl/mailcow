@@ -9,7 +9,7 @@ genpasswd() {
     count=0
     while [ $count -lt 3 ]
     do
-        pw_valid=$(tr -cd A-Za-z0-9 < /dev/urandom | fold -w24 | head -n1)
+        pw_valid=$(tr -cd 'A-Za-z0-9!"#$%&'\''()*+,-./:;<=>?@[\]^_`{|}~' < /dev/urandom | fold -w40 | head -n1)
         count=$(grep -o "[0-9]" <<< $pw_valid | wc -l)
     done
     echo $pw_valid
